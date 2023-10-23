@@ -1,11 +1,11 @@
 import { getHexColor } from '../../../services/color.processing';
 import { applyPatch, copyFile, readFile, replaceInFile } from '../../../services/file.processing';
 import { join } from 'path';
-import { ANDROID_MAIN_PATH, ANDROID_MAIN_RES_PATH } from '../../config';
+import { ANDROID_MAIN_PATH } from '../../config';
 import { generateResizedAssets } from '../../../services/image.processing';
 import { config } from './config';
 import { EResizeMode } from '../../../services/type';
-import { getAndroidPackageName, convertAndroidPackageNameToUri } from '../../../utils';
+import {getAndroidPackageName, convertAndroidPackageNameToUri, getAndroidResourceOutputPath} from '../../../utils';
 
 export const addAndroidSplashScreen = async (
   imageSource: string,
@@ -23,7 +23,7 @@ export const addAndroidSplashScreen = async (
 const addLaunchScreenBackgroundColor = (backgroundColor: string) => {
   replaceInFile(
     join(__dirname, '../../../../templates/android/values/colors-splash.xml'),
-    `${ANDROID_MAIN_RES_PATH}/values/colors-splash.xml`,
+    `${getAndroidResourceOutputPath()}/values/colors-splash.xml`,
     [
       {
         oldContent: /{{splashprimary}}/g,
@@ -41,13 +41,13 @@ const addReactNativeSplashScreen = (
 
   copyFile(
     join(__dirname, '../../../../templates/android/drawable/splashscreen.xml'),
-    `${ANDROID_MAIN_RES_PATH}/drawable/splashscreen.xml`
+    `${getAndroidResourceOutputPath()}/drawable/splashscreen.xml`
   );
   copyFile(
     join(__dirname, `../../../../templates/android/layout/launch_screen.${resizeMode}.xml`),
-    `${ANDROID_MAIN_RES_PATH}/layout/launch_screen.xml`
+    `${getAndroidResourceOutputPath()}/layout/launch_screen.xml`
   );
-  applyPatch(`${ANDROID_MAIN_RES_PATH}/values/styles.xml`, {
+  applyPatch(`${getAndroidResourceOutputPath()}/values/styles.xml`, {
     pattern: /^.*<resources>.*[\r\n]/g,
     patch: readFile(join(__dirname, '../../../../templates/android/values/styles-splash.xml')),
   });
@@ -86,7 +86,7 @@ const generateAndroidSplashImages = (imageSource: string) =>
     config.androidSplashImages.map(({ size, density }) =>
       generateResizedAssets(
         imageSource,
-        `${ANDROID_MAIN_RES_PATH}/drawable-${density}/splash_image.png`,
+        `${getAndroidResourceOutputPath()}/drawable-${density}/splash_image.png`,
         size,
         size,
         {

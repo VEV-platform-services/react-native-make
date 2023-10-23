@@ -10,6 +10,8 @@ const IOS_PODFILE_PATH = `./ios/Podfile`;
 const ANDROID_PACKAGE_EXP = new RegExp(/package=\"(.+)\"/);
 const IOS_PACKAGE_EXP = new RegExp(/target\s*["'](.+)['"]\s*do/);
 
+let OUTPUT_PATH: string;
+
 function fetchFileLocation(filePath: string): string {
   return join(process.cwd(), filePath);
 }
@@ -51,4 +53,19 @@ export function convertAndroidPackageNameToUri(packageName: string): string {
  */
 export function getIosPackageName(): string {
   return getPackageFileName('ios');
+}
+
+/**
+ * Get android resource output path
+ */
+export function getAndroidResourceOutputPath(): string {
+  return (OUTPUT_PATH ?? ANDROID_MAIN_PATH) + '/res';
+}
+
+export function getOutputPath(): string {
+  return OUTPUT_PATH;
+}
+
+export function setOutputPath(outputPath: string): void {
+  OUTPUT_PATH = outputPath;
 }

@@ -23,6 +23,10 @@ export const setIconCommand: Command = {
       description: 'background color',
       default: '#ffffff',
     },
+    {
+      name: '--outputPath [string]',
+      description: 'output path'
+    }
   ],
   examples: [
     {

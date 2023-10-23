@@ -2,9 +2,11 @@ import { addIosIcon } from './ios/service';
 import { addAndroidIcon } from './android/service';
 import { Config } from '@react-native-community/cli';
 import { EPlatform } from '../../services/type';
+import {setOutputPath} from '../../utils';
 
 export const setIconTask = async (argv: string[], config: Config, args: Record<string, any>) => {
-  const { path, platform, background } = args;
+  const { path, platform, background, outputPath } = args;
+  setOutputPath(outputPath);
   switch (platform) {
     case EPlatform.IOS:
       await addIosIcon(path);
