@@ -16,12 +16,11 @@
     "plugin"
   ],
   "scripts": {
-    "prepublish": "rm -rf dist && yarn tsc",
     "test:types": "yarn tsc --noEmit",
     "test": "yarn test:types",
     "release": "release-it",
-    "postinstall": "rm -rf dist && yarn tsc",
-    "posti": "rm -rf dist && yarn tsc"
+    "postinstall": "rm -rf dist && npx tsc",
+    "posti": "rm -rf dist && npx tsc"
   },
   "dependencies": {
     "color-string": "1.5.3",
