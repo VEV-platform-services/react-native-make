@@ -19,7 +19,9 @@
     "prepublish": "rm -rf dist && yarn tsc",
     "test:types": "yarn tsc --noEmit",
     "test": "yarn test:types",
-    "release": "release-it"
+    "release": "release-it",
+    "postinstall": "rm -rf dist && yarn tsc",
+    "posti": "rm -rf dist && yarn tsc"
   },
   "dependencies": {
     "color-string": "1.5.3",
