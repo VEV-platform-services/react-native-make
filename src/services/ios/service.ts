@@ -11,7 +11,7 @@ export const addIosImageSetContents = (
   imageSetName: string,
   setType: EImageSetType = EImageSetType.ICON
 ) => {
-  const outputPath = getOutputPath() ?? `./ios/${getIosPackageName()}`;
+  const outputPath = getOutputPath() || `./ios/${getIosPackageName()}`;
   const iosImageFolder = `${outputPath}/Images.xcassets/${imageSetName}.${setType}`;
   copyFile(
     join(__dirname, `../../../templates/ios/${imageSetName}SetContents.json`),

@@ -59,7 +59,7 @@ export function getIosPackageName(): string {
  * Get android resource output path
  */
 export function getAndroidResourceOutputPath(): string {
-  return (OUTPUT_PATH ?? ANDROID_MAIN_PATH) + '/res';
+  return (OUTPUT_PATH || ANDROID_MAIN_PATH) + '/res';
 }
 
 export function getOutputPath(): string {
