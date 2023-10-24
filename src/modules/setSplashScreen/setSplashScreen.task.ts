@@ -2,14 +2,15 @@ import { Config } from '@react-native-community/cli';
 import { addIosSplashScreen } from './ios/service';
 import { EPlatform } from '../../services/type';
 import { addAndroidSplashScreen } from './android/service';
+import {setOutputPath} from '../../utils';
 
 export const setSplashScreenTask = async (
   argv: string[],
   config: Config,
   args: Record<string, any>
 ) => {
-  const { path: imagePath, platform, background: backgroundColor, resize: resizeMode } = args;
-
+  const { path: imagePath, platform, background: backgroundColor, resize: resizeMode, outputPath } = args;
+  setOutputPath(outputPath);
   switch (platform) {
     case EPlatform.IOS:
       await addIosSplashScreen(imagePath, backgroundColor, resizeMode);
