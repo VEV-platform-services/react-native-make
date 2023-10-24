@@ -18,9 +18,7 @@
   "scripts": {
     "test:types": "yarn tsc --noEmit",
     "test": "yarn test:types",
-    "release": "release-it",
-    "postinstall": "rm -rf dist && npx tsc",
-    "posti": "rm -rf dist && npx tsc"
+    "release": "release-it"
   },
   "dependencies": {
     "color-string": "1.5.3",
