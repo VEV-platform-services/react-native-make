@@ -47,10 +47,11 @@ const addReactNativeSplashScreen = (
     join(__dirname, `../../../../templates/android/layout/launch_screen.${resizeMode}.xml`),
     `${getAndroidResourceOutputPath()}/layout/launch_screen.xml`
   );
-  applyPatch(`${getAndroidResourceOutputPath()}/values/styles.xml`, {
-    pattern: /^.*<resources>.*[\r\n]/g,
-    patch: readFile(join(__dirname, '../../../../templates/android/values/styles-splash.xml')),
-  });
+
+  copyFile(
+    join(__dirname, '../../../../templates/android/values/styles-splash.xml'),
+    `${getAndroidResourceOutputPath()}/values/styles.xml`
+  );
 
   const mainActivityPath = `${ANDROID_MAIN_PATH}/java/${convertAndroidPackageNameToUri(
     getAndroidPackageName()
