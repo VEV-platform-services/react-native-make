@@ -19,6 +19,7 @@ export const applyPatch = (
   path: string,
   { patch, pattern }: { patch: string; pattern: string | RegExp }
 ) => {
+  createDirectoryIfNotExists(path)
   if (!readFile(path).includes(patch)) {
     writeFileSync(path, readFileSync(path, 'utf8').replace(pattern, match => `${match}${patch}`));
   }
