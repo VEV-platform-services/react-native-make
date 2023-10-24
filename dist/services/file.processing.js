@@ -14,6 +14,7 @@ exports.copyFile = (sourcePath, destinationPath) => {
     fs_1.copyFileSync(sourcePath, destinationPath);
 };
 exports.applyPatch = (path, { patch, pattern }) => {
+    exports.createDirectoryIfNotExists(path);
     if (!exports.readFile(path).includes(patch)) {
         fs_1.writeFileSync(path, fs_1.readFileSync(path, 'utf8').replace(pattern, match => `${match}${patch}`));
     }

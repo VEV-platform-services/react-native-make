@@ -29,10 +29,7 @@ const addReactNativeSplashScreen = (backgroundColor, resizeMode = type_1.EResize
     addLaunchScreenBackgroundColor(backgroundColor);
     file_processing_1.copyFile(path_1.join(__dirname, '../../../../templates/android/drawable/splashscreen.xml'), `${utils_1.getAndroidResourceOutputPath()}/drawable/splashscreen.xml`);
     file_processing_1.copyFile(path_1.join(__dirname, `../../../../templates/android/layout/launch_screen.${resizeMode}.xml`), `${utils_1.getAndroidResourceOutputPath()}/layout/launch_screen.xml`);
-    file_processing_1.applyPatch(`${utils_1.getAndroidResourceOutputPath()}/values/styles.xml`, {
-        pattern: /^.*<resources>.*[\r\n]/g,
-        patch: file_processing_1.readFile(path_1.join(__dirname, '../../../../templates/android/values/styles-splash.xml')),
-    });
+    file_processing_1.copyFile(path_1.join(__dirname, '../../../../templates/android/values/styles-splash.xml'), `${utils_1.getAndroidResourceOutputPath()}/values/styles.xml`);
     const mainActivityPath = `${config_1.ANDROID_MAIN_PATH}/java/${utils_1.convertAndroidPackageNameToUri(utils_1.getAndroidPackageName())}/MainActivity.java`;
     file_processing_1.applyPatch(mainActivityPath, {
         pattern: /^(.+?)(?=import)/gs,
