@@ -9,6 +9,5 @@
     "outDir": "dist",
     "declaration": true
   },
- // "exclude": ["node_modules", "test", "dist"],
-  "include": ["./"]
+  "exclude": ["node_modules", "test", "dist"]
 }
